@@ -9,7 +9,6 @@ import numpy as np
 df = pd.read_csv('/home/diriei/etl_project/original_files/business_census2021.csv',encoding='utf-8')
 df = df[df.posttown == 'LONDON']
 df=df['postcode'].unique()
-df= pd.DataFrame(df)
 df.columns = ['postcode']
 df=df.replace(' ','+', regex=True)
 
