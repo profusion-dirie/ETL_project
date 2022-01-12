@@ -11,8 +11,8 @@ starttime= time.time()
 #extract london postcodes
 df = pd.read_csv('/home/diriei/etl_project/original_files/business_census2021.csv',encoding='utf-8')
 df = df[df.posttown == 'LONDON']
+df = df[['postcode']]
 df = df.drop_duplicates(subset='postcode', keep='first')
-df.columns = ['postcode']
 df=df.replace(' ','+', regex=True)
 
 
