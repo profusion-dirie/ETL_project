@@ -1,9 +1,12 @@
-from typing import Iterator
 import requests
 import pandas as pd
 import json
 import time
 import numpy as np 
+import time 
+
+#checking script run time
+starttime= time.time()
 
 #extract london postcodes
 df = pd.read_csv('/home/diriei/etl_project/original_files/business_census2021.csv',encoding='utf-8')
@@ -38,5 +41,8 @@ df['latitude'].replace('',np.nan,inplace=True)
 df.dropna(subset=['longitude'], inplace =True)
 df.dropna(subset=['latitude'], inplace=True)
 df['postcode'] = df['postcode'].str.replace('+','')
-df.to_csv('/home/diriei/etl_project/transformed_files/cleaned_postcode_coordinates.csv', sep=',', encoding='utf-8')
+df.to_csv('/home/diriei/etl_project/transformed_files/cleaned_postcode_coordinates1.csv', sep=',', encoding='utf-8')
 
+#script run time
+executiontime= (time.time() - starttime)
+print(executiontime)
