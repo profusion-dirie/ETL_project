@@ -50,7 +50,7 @@ new_df=pd.merge(df, coordinates, on='postcode', how='left')
 new_df.drop('Unnamed: 0', axis=1, inplace=True)
 
 #extracting borough code and merging 
-borough_code = pd.read_csv('/Users/diriei/Desktop/Training/pipeline_project/postcodes_directory.csv')
+borough_code = pd.read_csv('/home/diriei/etl_project/original_files/postcodes_directory.csv')
 borough_code['pcd'] = borough_code['pcd'].str.replace(' ','')
 borough_code = borough_code[['pcd','oslaua']]
 borough_code = borough_code.rename(columns = {'oslaua':'borough_code'})
@@ -58,10 +58,9 @@ borough_code = borough_code.rename(columns = {'pcd':'postcode'})
 final_df=pd.merge(new_df, borough_code, on='postcode', how='inner')
 
 #changing order of columnms
-new_df= new_df[['companynumber','incorporationdate','addressline1','addressline2','posttown','postcode','latitude','longitude','borough_code']]
-new_df.head()
+final_df= final_df[['companynumber','incorporationdate','addressline1','addressline2','posttown','postcode','latitude','longitude','borough_code']]
 
-new_df.to_csv('/home/diriei/etl_project/transformed_files/cleaned_business_census.csv', sep='|')
+final_df.to_csv('/home/diriei/etl_project/transformed_files/cleaned_business_census.csv', sep='|')
 
 
 #cultural infrastructure 
